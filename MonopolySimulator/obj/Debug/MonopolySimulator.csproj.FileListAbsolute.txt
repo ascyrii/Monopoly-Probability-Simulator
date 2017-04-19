@@ -1,0 +1,5 @@
+C:\documents\visual studio 2015\Projects\MonopolySimulator\MonopolySimulator\bin\Debug\MonopolySimulator.exe
+C:\documents\visual studio 2015\Projects\MonopolySimulator\MonopolySimulator\bin\Debug\MonopolySimulator.pdb
+C:\documents\visual studio 2015\Projects\MonopolySimulator\MonopolySimulator\obj\Debug\MonopolySimulator.csprojResolveAssemblyReference.cache
+C:\documents\visual studio 2015\Projects\MonopolySimulator\MonopolySimulator\obj\Debug\MonopolySimulator.exe
+C:\documents\visual studio 2015\Projects\MonopolySimulator\MonopolySimulator\obj\Debug\MonopolySimulator.pdb
