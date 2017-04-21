@@ -12,6 +12,7 @@ namespace MonopolySimulator
         private static BoardSpace[] boardLocation = new BoardSpace[40];
         private static Dice[] dicePair = new Dice[2];
         private static int rounds = 0;
+        private static int amountPlayers = 4;
 
         static void Main(string[] args)
         {
@@ -29,25 +30,41 @@ namespace MonopolySimulator
             }
 
             string val = Console.ReadLine();
-            int ival;
-            if(!int.TryParse(val, out ival))
+            if(!int.TryParse(val, out rounds))
             {
                 Console.WriteLine("Invalid Input - Must be numerical value.");
                 Main(null);
+                return;
             }
             else
             {
-                rounds = ival;
-                RunSimulation(ival);
+                SetPlayers();
             }
+        }
 
+        static void SetPlayers()
+        {
+            Console.WriteLine("Monopoly Simulator: Enter amount of players.");
+            string playerz = Console.ReadLine();
 
+            int plyCount;
+            if (!int.TryParse(playerz, out plyCount))
+            {
+                Console.WriteLine("Invalid Input - Must be a numerical value.");
+                SetPlayers();
+                return;
+            }
+            else
+            {
+                plyCount = amountPlayers;
+                RunSimulation(rounds);
+            }
         }
 
         static void RunSimulation(int turns)
         {
-            SimPlayer[] players = new SimPlayer[4];
-            for(int p = 0; p < players.Length; p++)
+            SimPlayer[] players = new SimPlayer[amountPlayers];
+            for(int p = 0; p < amountPlayers; p++)
             {
                 players[p] = new SimPlayer();
             }
@@ -56,7 +73,7 @@ namespace MonopolySimulator
             for (int i = 0; i < turns; i++)
             {
                 //Amount of players (static at 4)
-                for(int player = 0; player < 4; player++)
+                for(int player = 0; player < players.Length; player++)
                 {
                     
                     int spacemove = 0;
@@ -105,7 +122,7 @@ namespace MonopolySimulator
 
             string response;
 
-            int totalMoves = rounds * 4;
+            int totalMoves = rounds * amountPlayers;
             for (int i = 0; i < boardLocation.Length; i++)
             {
                 double percentage = (Convert.ToDouble(boardLocation[i].timesLanded) / Convert.ToDouble(totalMoves)) * 100;
@@ -117,17 +134,22 @@ namespace MonopolySimulator
             }
 
             response = String.Format("\nTotal Moves: {0}", totalMoves);
+
             outp.AppendLine(response);
             writer.WriteLine(response);
+
             Console.WriteLine(response);
 
             for (int d = 0; d < 6; d++)
             {
                 int maths = dicePair[0].timesRolled[d] + dicePair[1].timesRolled[d];
                 response = String.Format("\nTimes Dice Rolled {0}: {1}", d + 1, maths);
+
                 outp.AppendLine(response);
-                Console.WriteLine(response);
                 writer.WriteLine(response);
+
+                Console.WriteLine(response);
+                
             }
 
             Console.WriteLine("\nPress any key to continue...");
